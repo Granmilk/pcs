@@ -1,0 +1,13 @@
+<div th:fragment="divTabelaRelatorio">
+    <div id="divTabelaRelatorio">
+        <div th:each="veiculoServico : ${listaVeiculoServico}">
+            <span class="font-weight-bold">Data:</span>
+            <span th:text="${#dates.format(veiculoServico.servico.data, 'dd/MM/yyyy HH:mm')}"></span><br/>
+            <span class="font-weight-bold">Relatorio:</span>
+            <span th:text="${veiculoServico.servico.relatorio}"></span><br/>
+            <span class="font-weight-bold">Valor:</span> <span>R$</span>
+            <span th:text="${#numbers.formatDecimal(veiculoServico.servico.valor, 1, 'DEFAULT', 2, 'DEFAULT')}"></span><br/>
+            <hr>
+        </div>
+    </div>
+</div>

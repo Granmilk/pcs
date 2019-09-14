@@ -1,0 +1,48 @@
+<div th:fragment="content">
+    <div class="card shadow mx-auto col-8 mb-4">
+        <div class="card-header py-3">
+            <h4>Buscar veiculo</h4>
+            <input type="text" class="form-control" placeholder="Digite a placa ou o nome do cliente...">
+        </div>
+
+
+        <div class="card-body">
+            <h4>Lista de veiculos</h4>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        Veiculo
+                    </th>
+                    <th class="text-center">
+                        Acao
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="clienteVeiculo : ${listaClienteVeiculo}">
+                    <td>
+                        <span class="font-weight-bold">Placa:&nbsp;</span>
+                        <span th:text="${clienteVeiculo.veiculo.placa}"></span><br/>
+                        <span class="font-weight-bold">Marca:&nbsp;</span>
+                        <span th:text="${clienteVeiculo.veiculo.marca}"></span>
+                        <span class="font-weight-bold">Modelo:&nbsp;</span>
+                        <span th:text="${clienteVeiculo.veiculo.modelo}"></span><br/>
+                        <span class="font-weight-bold">Cor:&nbsp;</span>
+                        <span th:text="${clienteVeiculo.veiculo.cor}"></span>
+                        <span class="font-weight-bold">Cliente:&nbsp;</span>
+                        <span th:text="${clienteVeiculo.cliente.nome}"></span>
+
+                    </td>
+                    <td class="text-center">
+                        <button th:endpoint="${'consultar-placa/'+clienteVeiculo.veiculo.placa}" class="btn btn-light"><i class="fa fa-external-link-alt"></i></button>
+
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

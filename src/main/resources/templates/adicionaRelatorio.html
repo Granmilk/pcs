@@ -1,0 +1,37 @@
+<div th:fragment="divAdicionaRelatorio">
+
+    <form class="user form-ajax" method="post" data-target="divTabelaRelatorio" th:action="@{/cadastra-relatorio}">
+        <div class="form-group row">
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label for="placa">Placa do veiculo: </label>
+                <input readonly class="form-control mb-4" th:value="${veiculo.placa}" name="placa" id="placa">
+                <label for="valor">Preco do servico: </label>
+                <input type="text" class="form-control money" name="valor" id="valor"
+                       placeholder="R$ 00,00" required>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label for="relatorio">Relatorio do servico: </label>
+                <textarea class="form-control" name="relatorio" id="relatorio" placeholder="Digite o relatorio"
+                          style="margin-top: 0px; margin-bottom: 0px; height: 131px;"
+                          required>
+                        </textarea>
+            </div>
+        </div>
+
+
+        <button type="submit" id="botaoRegistra" class="mt-4 mx-auto col-6  btn btn-success btn-block">
+            Concluir
+        </button>
+    </form>
+
+    <hr>
+    <div class="mb-4"></div>
+
+
+    <script src="/assets/js/jquery.mask.js"></script>
+    <script src="/assets/js/mask.js"></script>
+    <script>
+        aplicarMask();
+    </script>
+</div>
