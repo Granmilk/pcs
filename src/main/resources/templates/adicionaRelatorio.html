@@ -7,20 +7,19 @@
                 <label for="placa">Placa do veiculo: </label>
                 <input readonly class="form-control mb-4" th:value="${veiculo.placa}" name="placa" id="placa">
                 <label for="valor">Preco do servico: </label>
-                <input type="text" class="form-control money" name="valor" id="valor"
+                <input type="text" class="form-control moeda" name="valor" id="valor"
                        placeholder="R$ 00,00" required>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label for="relatorio">Relatorio do servico: </label>
                 <textarea class="form-control" name="relatorio" id="relatorio" placeholder="Digite o relatorio"
                           style="margin-top: 0px; margin-bottom: 0px; height: 131px;"
-                          required>
-                        </textarea>
+                          required></textarea>
             </div>
         </div>
 
 
-        <button type="submit" id="botaoRegistra" class="mt-4 mx-auto col-6  btn btn-success btn-block">
+        <button type="submit" class="mt-4 mx-auto col-6 btn btn-success btn-block">
             Concluir
         </button>
     </form>

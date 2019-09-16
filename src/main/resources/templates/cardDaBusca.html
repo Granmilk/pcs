@@ -1,0 +1,14 @@
+<div th:fragment="content">
+    <div class="card shadow mx-auto col-8 mb-4">
+        <div class="card-header py-3">
+            <h4>Lista de veiculos</h4>
+        </div>
+
+        <div class="card-body">
+            <div th:insert="tabelaVeiculos.html :: divRetornoBusca" class="mt-4">
+
+            </div>
+
+        </div>
+    </div>
+</div>

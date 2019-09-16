@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class VeiculoController {
     private VeiculoServicoCrud veiculoServicoCrud;
     @Autowired
     private ServicoCrud servicoCrud;
+    @Autowired
+    private EntityManager entityManager;
 
 
     @RequestMapping("/buscar-placa")
@@ -47,6 +50,22 @@ public class VeiculoController {
         model.addAttribute("veiculo", veiculo);
         return "tabelaBuscaVeiculos.html";
     }
+    @RequestMapping("/buscar-veiculo/navbar")
+    public String buscaVeiculoOuProprietarioNavbar(@RequestParam("stringBusca") String stringBusca, Model model){
+        List<ClienteVeiculo> listaClienteVeiculo = clienteVeiculoCrud.getClienteVeiculoPorBusca(stringBusca);
+
+        model.addAttribute("listaClienteVeiculo", listaClienteVeiculo);
+        return "cardDaBusca.html";
+    }
+
+
+    @RequestMapping("/buscar-veiculo")
+    public String buscaVeiculoOuProprietario(@RequestParam("stringBusca") String stringBusca, Model model){
+        List<ClienteVeiculo> listaClienteVeiculo = clienteVeiculoCrud.getClienteVeiculoPorBusca(stringBusca);
+
+        model.addAttribute("listaClienteVeiculo", listaClienteVeiculo);
+        return "tabelaVeiculos.html";
+    }
 
     @RequestMapping("/cadastrar")
     public String telaDeCadastro(){
@@ -63,7 +82,6 @@ public class VeiculoController {
         model.addAttribute("clienteVeiculo", clienteVeiculo);
         return "consultaVeiculo.html";
     }
-
 
 
     @RequestMapping("/cadastra-veiculo")
@@ -98,11 +116,15 @@ public class VeiculoController {
     public String cadastroDeVeiculo(@RequestParam("placa") String placa, @RequestParam("relatorio") String relatorio, @RequestParam("valor") String valor,  Model model){
 
         Veiculo veiculo = veiculoCrud.getVeiculoByPlaca(placa.toUpperCase());
-        Servico servico = servicoCrud.insereServico(Double.parseDouble(valor), relatorio, new Date());
+        Servico servico = servicoCrud.insereServico(Double.parseDouble(valor.replaceAll(",", ".")), relatorio, new Date());
         VeiculoServico veiculoServico = veiculoServicoCrud.insereVeiculoServico(veiculo.getIdVeiculo(), servico.getIdServico());
 
+        entityManager.clear();
+        entityManager.close();
+        List<VeiculoServico> listaVeiculoServico = veiculoServicoCrud.getListaVeiculoServicoById(veiculo.getIdVeiculo());
 
-        model.addAttribute("veiculoServico", veiculoServico);
+
+        model.addAttribute("listaVeiculoServico", listaVeiculoServico);
 
         return "tabelaRelatorio.html";
     }

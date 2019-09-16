@@ -13,4 +13,6 @@ public interface VeiculoServicoRepository extends CrudRepository<VeiculoServico,
     VeiculoServico getVeiculoServicoByIdVeiculoServico(Long idVeiculoServico);
 
     VeiculoServico getVeiculoServicoByIdVeiculoAndAndIdServico(Long idVeiculo, Long idServico);
+
+
 }

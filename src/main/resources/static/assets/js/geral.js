@@ -1,23 +1,34 @@
 $(document).on('click', 'a[endpoint]', function (event) {
     var endpoint = $(this).attr('endpoint');
     var divId = $(this).attr('divId');
-    if(divId != undefined){
-        $("#"+divId).load("/"+endpoint);
-    } else{
-        $("#content").load("/"+endpoint);
+    if (divId != undefined) {
+        $("#" + divId).load("/" + endpoint);
+    } else {
+        $("#content").load("/" + endpoint);
     }
 });
 
-$(document).on('click','button[endpoint]', function (event) {
+$(document).on('click', 'button[endpoint]', function (event) {
     var endpoint = $(this).attr('endpoint');
     var divId = $(this).attr('divId');
-    if(divId != undefined){
-        $("#"+divId).load("/"+endpoint);
-    } else{
-        $("#content").load("/"+endpoint);
+    if (divId != undefined) {
+        $("#" + divId).load("/" + endpoint);
+    } else {
+        $("#content").load("/" + endpoint);
     }
 });
 
+$(document).on('keyup', '.busca-navbar', function (event) {
+    var form = $('#form-navbar');
+    ajaxSubmitForm(form);
+    return false;
+});
+
+$(document).on('keyup', '.busca-veiculo-cliente', function (event) {
+    var form = $('#input-busca-veiculo-cliente');
+    ajaxSubmitForm(form);
+    return false;
+});
 
 $(document).on('submit', '.form-ajax', function (event) {
     var form = event.target;
@@ -35,24 +46,12 @@ function ajaxSubmitForm(form) {
         type: "POST",
         url: url,
         data: $(form).serialize(), // serializes the form's elements.
-        beforeSend: function (xhr) {
-
-            $.blockUI({
-                message: '<i class="fa fa-4x fa-cog fa-spin text-info"> </i>',
-                css: {border: 'none', backgroundColor: 'transparent'}
-            });
-
-        },
         success: function (data) {
             $(containerId).html(data);
         }
     })
 
         .fail(function () {
-
-        })
-        .always(function () {
-            $.unblockUI();
         });
 }
 

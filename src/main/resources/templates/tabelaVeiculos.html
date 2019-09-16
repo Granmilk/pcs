@@ -1,0 +1,33 @@
+<div th:fragment="divRetornoBusca">
+    <div th:id="divRetornoBusca">
+
+        <div th:each="clienteVeiculo : ${listaClienteVeiculo}">
+            <div class="row">
+                <div class="col-10">
+                    <span class="font-weight-bold">Placa:&nbsp;</span>
+                    <span th:text="${clienteVeiculo.veiculo.placa}"></span><br/>
+                    <span class="font-weight-bold">Marca:&nbsp;</span>
+                    <span th:text="${clienteVeiculo.veiculo.marca}"></span>
+                    <span class="font-weight-bold">Modelo:&nbsp;</span>
+                    <span th:text="${clienteVeiculo.veiculo.modelo}"></span><br/>
+                    <span class="font-weight-bold">Cor:&nbsp;</span>
+                    <span th:text="${clienteVeiculo.veiculo.cor}"></span>
+                    <span class="font-weight-bold">Cliente:&nbsp;</span>
+                    <span th:text="${clienteVeiculo.cliente.nome}"></span>
+
+                </div>
+                <div class="text-center col-2">
+                    <button th:endpoint="${'consultar-placa/'+clienteVeiculo.veiculo.placa}" class="btn btn-light"><i
+                            class="fa fa-external-link-alt"></i></button>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div th:if="${listaClienteVeiculo.size() < 1}" class="text-center">
+            <h4 class="mb-4 mt-4">Nao foi encontrado nenhum veiculo ou cliente com estes parametros!</h4>
+            <button endpoint="cadastrar" class="btn btn-secondary"><i class="fa fa-plus"></i> Cadastrar</button>
+        </div>
+
+    </div>
+</div>
