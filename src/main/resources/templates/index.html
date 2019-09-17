@@ -246,7 +246,7 @@
             <div>
                 <div th:id="content">
                     <div class="row">
-                        <div class="card shadow col-7 mb-4">
+                        <div class="card shadow col-md-7  mb-4">
                             <div class="card-header py-3">
                                 <h4 class="m-0 font-weight-bold text-center text-black-50">Ultimos Servicos</h4>
                             </div>
@@ -261,7 +261,7 @@
                                             <span class="font-weight-bold">Relatorio:</span>
                                             <span th:text="${veiculoServico.servico.relatorio}"></span><br/>
                                             <span class="font-weight-bold">Valor:</span> <span>R$</span>
-                                            <span th:text="${#numbers.formatDecimal(veiculoServico.servico.valor, 1, 'DEFAULT', 2, 'DEFAULT')}"></span><br/>
+                                            <span th:text="${#numbers.formatDecimal(veiculoServico.servico.valor, 1, 'POINT', 2, 'COMMA')}"></span><br/>
                                         </div>
                                         <div class="col-4">
                                             <span class="font-weight-bold">Placa:</span>
@@ -281,9 +281,13 @@
                                     </div>
                                     <hr>
                                 </div>
+                                <div th:if="${listaVeiculoServico.size() < 1}" class="text-center">
+                                    <h4 class="mb-4 mt-4">Sua lista de serviços está vazia!</h4>
+                                    <button endpoint="cadastrar" class="btn btn-secondary"><i class="fa fa-plus"></i> Novo serviço</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="card shadow col-4 mb-4 ml-2">
+                        <div class="card shadow col-md-4 mb-4 ml-2">
                             <div class="card-header py-3">
                                 <h4 class="m-0 font-weight-bold text-center text-black-50">Ultimos clientes</h4>
                             </div>
@@ -307,6 +311,10 @@
                                         </div>
                                     </div>
                                     <hr>
+                                </div>
+                                <div th:if="${listaClienteVeiculo.size() < 1}" class="text-center">
+                                    <h4 class="mb-4 mt-4">Sua lista de clientes está vazia!</h4>
+                                    <button endpoint="cadastrar" class="btn btn-secondary"><i class="fa fa-plus"></i> Novo cliente</button>
                                 </div>
                             </div>
                         </div>

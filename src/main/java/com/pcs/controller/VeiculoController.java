@@ -115,8 +115,10 @@ public class VeiculoController {
     @RequestMapping("/cadastra-relatorio")
     public String cadastroDeVeiculo(@RequestParam("placa") String placa, @RequestParam("relatorio") String relatorio, @RequestParam("valor") String valor,  Model model){
 
+        String moeda = valor.replaceAll("\\.", "");
+        Double valorDouble = Double.parseDouble(moeda.replaceAll(",", "."));
         Veiculo veiculo = veiculoCrud.getVeiculoByPlaca(placa.toUpperCase());
-        Servico servico = servicoCrud.insereServico(Double.parseDouble(valor.replaceAll(",", ".")), relatorio, new Date());
+        Servico servico = servicoCrud.insereServico(valorDouble, relatorio, new Date());
         VeiculoServico veiculoServico = veiculoServicoCrud.insereVeiculoServico(veiculo.getIdVeiculo(), servico.getIdServico());
 
         entityManager.clear();

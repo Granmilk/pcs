@@ -18,6 +18,15 @@ $(document).on('click', 'button[endpoint]', function (event) {
     }
 });
 
+$(document).on('load', '.real', function (event) {
+    var valor = $(this).val();
+    var valorFromatado = valor.toLocaleString('pt-br', {minimumFractionDigits: 2});
+    $(this).text(valorFromatado);
+});
+
+
+
+
 $(document).on('keyup', '.busca-navbar', function (event) {
     var form = $('#form-navbar');
     ajaxSubmitForm(form);

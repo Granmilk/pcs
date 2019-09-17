@@ -3,7 +3,7 @@
 
         <div th:each="clienteVeiculo : ${listaClienteVeiculo}">
             <div class="row">
-                <div class="col-10">
+                <div class="col-md-10">
                     <span class="font-weight-bold">Placa:&nbsp;</span>
                     <span th:text="${clienteVeiculo.veiculo.placa}"></span><br/>
                     <span class="font-weight-bold">Marca:&nbsp;</span>
@@ -16,7 +16,7 @@
                     <span th:text="${clienteVeiculo.cliente.nome}"></span>
 
                 </div>
-                <div class="text-center col-2">
+                <div class="text-center col-md-2">
                     <button th:endpoint="${'consultar-placa/'+clienteVeiculo.veiculo.placa}" class="btn btn-light"><i
                             class="fa fa-external-link-alt"></i></button>
 
